@@ -1,0 +1,19 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: grafana_agent
+  author: nleiva
+  description: Grafana Cloud Agent installation for Linux.
+  license: "license (GPLv3)"
+  min_ansible_version: 2.8
+  platforms:
+    - name: EL
+      versions:
+        - 8
+    - name: Debian
+      versions:
+        - buster
+  galaxy_tags:
+    - grafana
+    - prometheus

@@ -1,0 +1,22 @@
+# Ansible Lint for GitHub Action: https://github.com/marketplace/actions/ansible-lint
+name: Ansible Lint
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    # Important: This sets up your GITHUB_WORKSPACE environment variable
+    - uses: actions/checkout@v2
+
+    - name: Lint Ansible Playbook
+      # replace "master" with any valid ref
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: "*.yml"
+        # Avoid annoying
+        #  - 'File permissions unset or incorrect' [E208]
+        args: "-x 208"

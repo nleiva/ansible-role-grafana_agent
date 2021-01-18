@@ -1,0 +1,10 @@
+[Unit]
+Description=Grafana Cloud agent
+
+[Service]
+Type=simple
+ExecStart={{ agent_location }}/agent-linux-{{ type[ansible_architecture] }} --config.file={{ config_location }}/agent-config.yaml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
