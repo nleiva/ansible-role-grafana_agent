@@ -7,6 +7,8 @@ build: check-env ## Build and upload to Galaxy. Make sure you TAG correctly
 	git commit -m "Bump to version ${TAG}"
 	git tag -a -m "Bump to version ${TAG}" v${TAG}
 	git push --follow-tags
+	# Needs -> ansible-galaxy login --github-token <token>
+	ansible-galaxy import nleiva ansible-role-grafana_agent
 
 check-env: ## Check if TAG variable is set. Brought to you by https://stackoverflow.com/a/4731504
 ifndef TAG
