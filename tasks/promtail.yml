@@ -4,6 +4,13 @@
     dest: "/tmp/promtail-linux.zip"
     mode: '0644'
 
+- name: Create directory for Promtail's files
+  file:
+    state: directory
+    recurse: yes
+    path: "{{ promtail_location }}"
+    mode: 0755
+
 - name: Unarchive Promtail
   unarchive:
     src: "/tmp/promtail-linux.zip"
