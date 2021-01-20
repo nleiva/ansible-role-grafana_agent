@@ -23,7 +23,7 @@
     src: agent-config.yaml.j2
     dest: "{{ config_location }}/agent-config.yaml"
     mode: 0644
-    force: no
+    force: yes
 
 - name: Create Systemd service
   block:
