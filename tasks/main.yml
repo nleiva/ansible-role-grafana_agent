@@ -45,4 +45,3 @@
   when:
     - grafana_log_user is defined
     - grafana_log_password is defined
-    - type[ansible_architecture] == "amd64"
