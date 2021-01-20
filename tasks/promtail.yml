@@ -1,6 +1,6 @@
 - name: Download latest Promtail release
   get_url:
-    url: "https://github.com/grafana/loki/releases/latest/download/promtail-linux-{{ type[ansible_architecture] }}.zip"
+    url: "https://github.com/grafana/loki/releases/latest/download/promtail-linux-{{ promtail_type[ansible_architecture] }}.zip"
     dest: "/tmp/promtail-linux.zip"
     mode: '0644'
 
