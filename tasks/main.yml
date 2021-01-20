@@ -42,7 +42,7 @@
 
 - name: Install Promtail
   include_tasks: "promtail.yml"
-  when: 
+  when:
     - grafana_log_user is defined
     - grafana_log_password is defined
     - type[ansible_architecture] == "amd64"
