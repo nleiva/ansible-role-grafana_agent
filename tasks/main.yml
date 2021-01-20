@@ -18,7 +18,7 @@
     path: "{{ config_location }}"
     mode: 0755
 
-- name: Create an Agent's config file
+- name: Create Agent's config file
   template:
     src: agent-config.yaml.j2
     dest: "{{ config_location }}/agent-config.yaml"
@@ -39,3 +39,10 @@
         state: restarted
         daemon_reload: yes
         enabled: yes
+
+- name: Install Promtail
+  include_tasks: "promtail.yml"
+  when: 
+    - grafana_log_user is defined
+    - grafana_log_password is defined
+    - type[ansible_architecture] == "amd64"

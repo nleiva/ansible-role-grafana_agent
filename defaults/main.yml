@@ -4,3 +4,4 @@ type:
   armv7l: armv7
 agent_location: /usr/local/bin
 config_location: /etc/grafana
+promtail_location: /opt/promtail

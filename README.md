@@ -6,6 +6,8 @@ Installs [Grafana Cloud Agent](https://github.com/grafana/agent) on RedHat/CentO
 
 This role installs and configures the latest version of [Grafana Cloud Agent](https://github.com/grafana/agent) from [GitHub releases](https://github.com/grafana/agent/releases). It also creates a [systemd service to manage the agent](https://grafana.com/docs/grafana-cloud/agent/agent_as_service/).
 
+It optionally installs [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/), whichi is an agent which ships the contents of local logs to Grafana Cloud (Loki).
+
 ## Requirements
 
 None.
@@ -29,7 +31,12 @@ Location where the agent's config will be installed. The default location (`/etc
 
 By default, this role will ensure [Grafana Cloud Agent](https://github.com/grafana/agent) is running and enabled at boot.
 
-## Overriding configuration templates
+    grafana_log_user: <username>
+    grafana_log_password: <password>
+
+[Grafana Cloud](https://grafana.com/products/cloud/) username and password for the the [Loki](https://grafana.com/blog/2020/05/12/an-only-slightly-technical-introduction-to-loki-the-prometheus-inspired-open-source-logging-system/) integration. If present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent an create a Sytemd service for it.
+
+## Overriding configuration/service templates
 
 - [ ] TODO
 

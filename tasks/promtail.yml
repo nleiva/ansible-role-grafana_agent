@@ -1,0 +1,34 @@
+- name: Download latest Promtail release
+  get_url:
+    url: "https://github.com/grafana/loki/releases/latest/download/promtail-linux-{{ type[ansible_architecture] }}.zip"
+    dest: "/tmp/promtail-linux.zip"
+    mode: '0644'
+
+- name: Unarchive Promtail
+  unarchive:
+    src: "/tmp/promtail-linux.zip"
+    dest: "{{ promtail_location }}"
+    remote_src: yes
+    mode: '0755'
+
+- name: Create an Promtail config file
+  template:
+    src: promtail-config.yaml.j2
+    dest: "{{ promtail_location }}/promtail-config.yaml"
+    mode: 0644
+    force: no
+
+- name: Create Systemd service
+  block:
+    - name: Template the new service file for Promtail agent
+      template:
+        src: promtail.service.j2
+        dest: /usr/lib/systemd/system/promtail.service
+        mode: '0644'
+
+    - name: Reload and start service Promtail agent
+      service:
+        name: promtail
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
