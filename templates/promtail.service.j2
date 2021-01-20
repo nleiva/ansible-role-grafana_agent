@@ -5,7 +5,7 @@ Description=Promtail
 Type=simple
 WorkingDirectory={{ promtail_location }}
 ExecStartPre=/bin/sleep 30
-ExecStart={{ promtail_location }}/promtail-linux-{{ type[ansible_architecture] }} --config.file={{ promtail_location }}/promtail-config.yam.yaml
+ExecStart={{ promtail_location }}/promtail-linux-{{ type[ansible_architecture] }} --config.file={{ promtail_location }}/promtail-config.yaml
 SuccessExitStatus=143
 TimeoutStopSec=10
 Restart=on-failure
