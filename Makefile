@@ -5,7 +5,7 @@ all: build
 build: check-env ## Build and upload to Galaxy. Make sure you TAG correctly
 	git add .
 	git commit -m "Bump to version ${TAG}"
-	git tag -a -m "Bump to version ${TAG}" v${TAG}
+	git tag -a -m "Bump to version ${TAG}" ${TAG}
 	git push --follow-tags
 	# Needs -> ansible-galaxy login --github-token <token>
 	ansible-galaxy import nleiva ansible-role-grafana_agent
