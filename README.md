@@ -34,7 +34,7 @@ By default, this role will ensure [Grafana Cloud Agent](https://github.com/grafa
     grafana_log_user: <username>
     grafana_log_password: <password>
 
-[Grafana Cloud](https://grafana.com/products/cloud/) username and password for the the [Loki](https://grafana.com/blog/2020/05/12/an-only-slightly-technical-introduction-to-loki-the-prometheus-inspired-open-source-logging-system/) integration. If present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent an create a Sytemd service for it.
+[Grafana Cloud](https://grafana.com/products/cloud/) username and password for the the [Loki](https://grafana.com/blog/2020/05/12/an-only-slightly-technical-introduction-to-loki-the-prometheus-inspired-open-source-logging-system/) integration. If present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent an create a Systemd service for it. It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
 
 ## Overriding configuration/service templates
 
