@@ -11,5 +11,5 @@ integrations:
   prometheus_remote_write:
     - url: https://prometheus-us-central1.grafana.net/api/prom/push
       basic_auth:
-        username: "{{ grafana_user }}"
-        password: {{ grafana_password }}
+        username: "{{ prometheus_user }}"
+        password: {{ grafana_api_key }}

@@ -10,31 +10,33 @@ It optionally installs [Promtail](https://grafana.com/docs/loki/latest/clients/p
 
 ## Requirements
 
-None.
+None. Other than an account on [Grafana Cloud](https://grafana.com/products/cloud/) -> [Create account](https://grafana.com/signup/cloud/connect-account).
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yml`). You can get the values for your enviroment from the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/).
 
-    grafana_user: <username>
-    grafana_password: <password>
+    prometheus_user: <username>
 
-[Grafana Cloud](https://grafana.com/products/cloud/) username and password for the the Linux integration/Prometheus data source. [Create account](https://grafana.com/signup/cloud/connect-account).
+Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Prometheus to get the value you need to provide for `prometheus_user`.
+
+    grafana_api_key: <key>
+
+You can generate a new API Key in the API Keys section of the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/). The role has to be `MetricsPublisher`.
 
     agent_location: /usr/local/bin
 
-Location where the agent's binary will be installed. The default location (`/usr/local/bin`) is preferred in systems where SELinux is enabled.
+Location where the [Grafana Cloud Agent](https://github.com/grafana/agent)'s binary will be installed. The default location (`/usr/local/bin`) is preferred in systems where SELinux is enabled.
 
     config_location: /etc/grafana
 
-Location where the agent's config will be installed. The default location (`/etc/grafana`) is preferred in systems where SELinux is enabled.
+Location where the [Grafana Cloud Agent](https://github.com/grafana/agent)'s config will be stored. The default location (`/etc/grafana`) is preferred in systems where SELinux is enabled.
 
 By default, this role will ensure [Grafana Cloud Agent](https://github.com/grafana/agent) is running and enabled at boot.
 
-    grafana_log_user: <username>
-    grafana_log_password: <password>
+    loki_user: <username>
 
-[Grafana Cloud](https://grafana.com/products/cloud/) username and password for the the [Loki](https://grafana.com/blog/2020/05/12/an-only-slightly-technical-introduction-to-loki-the-prometheus-inspired-open-source-logging-system/) integration. If present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent an create a Systemd service for it. It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
+Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Loki to get the value you need to provide for `loki_user`. If this value is present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent and create a Systemd service for it. It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
 
 ## Overriding configuration/service templates
 
@@ -50,6 +52,8 @@ None.
     - hosts: server
       roles:
         - { role: nleiva.grafana-agent }
+
+See an example playbook I run for my home-lab [here](https://github.com/nleiva/ansible-home/blob/main/grafana-cloud.yml).
 
 ## License
 
