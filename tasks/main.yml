@@ -43,5 +43,4 @@
 - name: Install Promtail
   include_tasks: "promtail.yml"
   when:
-    - grafana_log_user is defined
-    - grafana_log_password is defined
+    - loki_user is defined
