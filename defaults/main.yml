@@ -2,9 +2,11 @@
 type:
   x86_64: amd64
   armv7l: armv7
+  aarch64: arm64
 promtail_type:
   x86_64: amd64
   armv7l: arm
+  aarch64: arm64
 agent_location: /usr/local/bin
 config_location: /etc/grafana
 promtail_location: /opt/promtail
