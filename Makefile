@@ -2,7 +2,7 @@
 
 all: build
 
-build: check-env ## Build and upload to Galaxy. Make sure you TAG correctly
+build: check-env ## Build and upload to Galaxy. Make sure you TAG correctly (Example TAG=0.3.2)
 	git add .
 	git commit -m "Bump to version ${TAG}"
 	git tag -a -m "Bump to version ${TAG}" ${TAG}
