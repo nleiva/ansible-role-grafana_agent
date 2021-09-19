@@ -16,7 +16,7 @@ jobs:
       # replace "master" with any valid ref
       uses: ansible/ansible-lint-action@master
       with:
-        targets: "*.yml"
+        targets: "."
         # Avoid annoying
         #  - 'File permissions unset or incorrect' [E208]
         args: "-x 208"

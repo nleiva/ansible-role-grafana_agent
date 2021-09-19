@@ -51,7 +51,7 @@ None.
 
     - hosts: server
       roles:
-        - { role: nleiva.grafana-agent }
+        - { role: nleiva.grafana_agent }
 
 See an example playbook I run for my home-lab [here](https://github.com/nleiva/ansible-home/blob/main/grafana-cloud.yml).
 
