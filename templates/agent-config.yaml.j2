@@ -9,7 +9,7 @@ integrations:
   node_exporter:
     enabled: true
   prometheus_remote_write:
-    - url: https://prometheus-us-central1.grafana.net/api/prom/push
+    - url: https://prometheus-{{ grafana_location }}.grafana.net/api/prom/push
       basic_auth:
         username: "{{ prometheus_user }}"
         password: {{ grafana_api_key }}

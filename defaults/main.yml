@@ -11,3 +11,4 @@ agent_location: /usr/local/bin
 config_location: /etc/grafana
 promtail_location: /opt/promtail
 install_unzip: true
+grafana_location: us-central1

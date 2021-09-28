@@ -44,6 +44,10 @@ Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a uniqu
 
 Whether to install `unzip`, to extract files from agent's zip releases. By default is set to `true`.
 
+    grafana_location: us-central1
+
+The closest Grafana region. As displayed in `@logs-prod-us-central1.grafana.net/api/prom/push` for example.
+
 ## Overriding configuration/service templates
 
 - [ ] TODO
