@@ -10,3 +10,4 @@ promtail_type:
 agent_location: /usr/local/bin
 config_location: /etc/grafana
 promtail_location: /opt/promtail
+install_unzip: true

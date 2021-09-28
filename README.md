@@ -40,6 +40,10 @@ By default, this role will ensure [Grafana Cloud Agent](https://github.com/grafa
 
 Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Loki to get the value you need to provide for `loki_user`. If this value is present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent and create a Systemd service for it. It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
 
+    install_unzip: true
+
+Whether to install `unzip`, to extract files from agent's zip releases. By default is set to `true`.
+
 ## Overriding configuration/service templates
 
 - [ ] TODO

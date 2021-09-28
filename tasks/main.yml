@@ -4,6 +4,12 @@
     dest: "/tmp/agent-linux.zip"
     mode: '0644'
 
+- name: Install unzip
+  package:
+    name: unzip
+    state: present
+  when: install_unzip|bool
+
 - name: Unarchive Agent
   unarchive:
     src: "/tmp/agent-linux.zip"
