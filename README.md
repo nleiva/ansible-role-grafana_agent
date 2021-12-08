@@ -48,10 +48,21 @@ Whether to install `unzip`, to extract files from agent's zip releases. By defau
 
 The closest Grafana region. As displayed in `@logs-prod-us-central1.grafana.net/api/prom/push` for example.
 
-## Overriding configuration/service templates
+To override the agent configuration template, you can define your own template. By default it'll source it from the role file `templates/agent-config.yaml.j2`. 
 
-- [ ] TODO
+    grafana_agent_config_template: agent-config.yaml.j2
 
+The grafana agent systemd service template can be set using the following variable:
+
+    grafana_agent_systemd_template: grafana-agent.service.j2
+
+To override the promtail configuration template, you can define your own template. By default it'll source it from the role file `templates/promtail-config.yaml.j2`. 
+
+    grafana_promtail_config_template: promtail-config.yaml.j2
+
+The promtail systemd service template can be set using the following variable:
+
+    grafana_promtail_systemd_template: promtail.service.j2
 
 ## Dependencies
 
