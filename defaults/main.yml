@@ -1,3 +1,4 @@
+---
 # ansible_architecture
 type:
   x86_64: amd64
@@ -12,3 +13,7 @@ config_location: /etc/grafana
 promtail_location: /opt/promtail
 install_unzip: true
 grafana_location: us-central1
+grafana_agent_config_template: agent-config.yaml.j2
+grafana_agent_systemd_template: grafana-agent.service.j2
+grafana_promtail_config_template: promtail-config.yaml.j2
+grafana_promtail_systemd_template: promtail.service.j2

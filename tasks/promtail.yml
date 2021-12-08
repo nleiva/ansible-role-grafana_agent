@@ -1,3 +1,4 @@
+---
 - name: Download latest Promtail release
   get_url:
     url: "https://github.com/grafana/loki/releases/latest/download/promtail-linux-{{ promtail_type[ansible_architecture] }}.zip"
@@ -20,7 +21,7 @@
 
 - name: Create an Promtail config file
   template:
-    src: promtail-config.yaml.j2
+    src: "{{ grafana_promtail_config_template }}"
     dest: "{{ promtail_location }}/promtail-config.yaml"
     mode: 0644
     force: yes
@@ -29,7 +30,7 @@
   block:
     - name: Template the new service file for Promtail agent
       template:
-        src: promtail.service.j2
+        src: "{{ grafana_promtail_systemd_template }}"
         dest: /usr/lib/systemd/system/promtail.service
         mode: '0644'
 

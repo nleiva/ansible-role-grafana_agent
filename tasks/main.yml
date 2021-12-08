@@ -1,3 +1,4 @@
+---
 - name: Download Agent file
   get_url:
     url: "https://github.com/grafana/agent/releases/latest/download/agent-linux-{{ type[ansible_architecture] }}.zip"
@@ -26,7 +27,7 @@
 
 - name: Create Agent's config file
   template:
-    src: agent-config.yaml.j2
+    src: "{{ grafana_agent_config_template }}"
     dest: "{{ config_location }}/agent-config.yaml"
     mode: 0644
     force: yes
@@ -35,7 +36,7 @@
   block:
     - name: Template the new service file for Grafana agent
       template:
-        src: grafana-agent.service.j2
+        src: "{{ grafana_agent_systemd_template }}"
         dest: /usr/lib/systemd/system/grafana-agent.service
         mode: '0644'
 
