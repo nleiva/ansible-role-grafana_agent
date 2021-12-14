@@ -31,7 +31,7 @@
     - name: Template the new service file for Promtail agent
       template:
         src: "{{ grafana_promtail_systemd_template }}"
-        dest: /usr/lib/systemd/system/promtail.service
+        dest: "{{ systemd_service_folder }}/promtail.service"
         mode: '0644'
 
     - name: Reload and start service Promtail agent
