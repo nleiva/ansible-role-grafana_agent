@@ -1,6 +1,6 @@
 # Ansible Role: Grafana Cloud Agent
 
-![Ansible Lint](https://github.com/nleiva/ansible-role-grafana_agent/workflows/Ansible%20Lint/badge.svg?branch=main)
+![Ansible Lint](https://github.com/nleiva/ansible-role-grafana_agent/workflows/Ansible%20Lint/badge.svg?branch=main) ![Ansible Role](https://img.shields.io/ansible/role/52768?style=plastic) ![Quality Score](https://img.shields.io/ansible/quality/52768) ![Downloads](https://img.shields.io/ansible/role/d/52768?style=plastic)
 
 Installs [Grafana Cloud Agent](https://github.com/grafana/agent) on RedHat/CentOS or Debian/Ubuntu servers to collect observability data and sends it to [Grafana Cloud](https://grafana.com/products/cloud/).
 
