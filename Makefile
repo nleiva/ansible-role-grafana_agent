@@ -7,7 +7,9 @@ build: check-env ## Build and upload to Galaxy. Make sure you TAG correctly (Exa
 	git commit -m "Bump to version ${TAG}"
 	git tag -a -m "Bump to version ${TAG}" ${TAG}
 	git push --follow-tags
-	# Needs -> ansible-galaxy login --github-token <token>
+	# An API key is now required to publish roles or collections to Galaxy. 
+	# The key can be found at https://galaxy.ansible.com/me/preferences, 
+	# and passed to the ansible-galaxy CLI via a file at $HOME/.ansible/galaxy_token
 	ansible-galaxy import nleiva ansible-role-grafana_agent
 
 check-env: ## Check if TAG variable is set. Brought to you by https://stackoverflow.com/a/4731504
