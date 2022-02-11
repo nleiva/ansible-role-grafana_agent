@@ -15,13 +15,13 @@
   unarchive:
     src: "/tmp/agent-linux.zip"
     dest: "{{ agent_location }}"
-    remote_src: yes
+    remote_src: true
     mode: '0755'
 
 - name: Create directory for Agent's config file
   file:
     state: directory
-    recurse: yes
+    recurse: true
     path: "{{ config_location }}"
     mode: 0755
 
@@ -30,7 +30,7 @@
     src: "{{ grafana_agent_config_template }}"
     dest: "{{ config_location }}/agent-config.yaml"
     mode: 0644
-    force: yes
+    force: true
 
 - name: Create Systemd service
   block:
@@ -44,8 +44,8 @@
       service:
         name: grafana-agent
         state: restarted
-        daemon_reload: yes
-        enabled: yes
+        daemon_reload: true
+        enabled: true
 
 - name: Install Promtail
   include_tasks: "promtail.yml"

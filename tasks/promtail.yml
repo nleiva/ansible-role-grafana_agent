@@ -8,7 +8,7 @@
 - name: Create directory for Promtail's files
   file:
     state: directory
-    recurse: yes
+    recurse: true
     path: "{{ promtail_location }}"
     mode: 0755
 
@@ -16,7 +16,7 @@
   unarchive:
     src: "/tmp/promtail-linux.zip"
     dest: "{{ promtail_location }}"
-    remote_src: yes
+    remote_src: true
     mode: '0755'
 
 - name: Create an Promtail config file
@@ -24,7 +24,7 @@
     src: "{{ grafana_promtail_config_template }}"
     dest: "{{ promtail_location }}/promtail-config.yaml"
     mode: 0644
-    force: yes
+    force: true
 
 - name: Create Systemd service
   block:
@@ -38,5 +38,5 @@
       service:
         name: promtail
         state: restarted
-        daemon_reload: yes
-        enabled: yes
+        daemon_reload: true
+        enabled: true
