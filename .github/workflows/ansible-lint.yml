@@ -1,12 +1,12 @@
 # Ansible Lint for GitHub Action: https://github.com/marketplace/actions/ansible-lint
 name: Ansible Lint
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
@@ -17,6 +17,8 @@ jobs:
       uses: ansible/ansible-lint-action@master
       with:
         targets: "."
+        override-deps: |
+            rich>=9.5.1,<11.0.0
         # Avoid annoying
         #  - 'File permissions unset or incorrect' [E208]
         args: "-x 208"
