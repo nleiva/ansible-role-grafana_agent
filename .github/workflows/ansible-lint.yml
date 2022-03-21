@@ -23,10 +23,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Lint Ansible Playbook
-        uses: nleiva/ansible-lint-action@master
+        uses: ansible/ansible-lint-action@v6.0.1
         with:
-          targets: "*.yml"
-          override-deps: |
-             rich>=9.5.1,<11.0.0
+          targets: "."
+          #override-deps: |
+          #   rich>=9.5.1,<11.0.0
           # Avoid annoying 'File permissions not mentioned'  
           args: "-x 208"
