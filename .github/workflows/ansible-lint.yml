@@ -1,24 +1,32 @@
-# Ansible Lint for GitHub Action: https://github.com/marketplace/actions/ansible-lint
 name: Ansible Lint
 
-on: [push, pull_request, workflow_dispatch]
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-
+  # This workflow contains a single job called "lint"
+  lint:
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Important: This sets up your GITHUB_WORKSPACE environment variable
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Lint Ansible Playbook
-      # replace "master" with any valid ref
-      uses: ansible/ansible-lint-action@master
-      with:
-        targets: "."
-        override-deps: |
-            rich>=9.5.1,<11.0.0
-        # Avoid annoying
-        #  - 'File permissions unset or incorrect' [E208]
-        args: "-x 208"
+      - name: Lint Ansible Playbook
+        uses: nleiva/ansible-lint-action@master
+        with:
+          targets: "*.yml"
+          override-deps: |
+             rich>=9.5.1,<11.0.0
+          # Avoid annoying 'File permissions not mentioned'  
+          args: "-x 208"
