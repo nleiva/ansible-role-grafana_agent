@@ -47,7 +47,7 @@ Whether to install `unzip`, to extract files from agent's zip releases. By defau
     grafana_location_prometheus: us-central1
     grafana_location_promtail: us-central1
 
-The closest Grafana region for promtail or prometheus. As displayed in `@logs-prod-us-central1.grafana.net/api/prom/push` for example. By default `us-central1`
+The closest Grafana region for promtail or prometheus. As displayed in `@logs-prod-us-central1.grafana.net/api/prom/push` for example. By default is `us-central1`
 
 To override the agent configuration template, you can define your own template. By default it'll source it from the role file `templates/agent-config.yaml.j2`. 
 
