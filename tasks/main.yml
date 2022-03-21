@@ -23,13 +23,13 @@
     state: directory
     recurse: true
     path: "{{ config_location }}"
-    mode: 0755
+    mode: u=rwX,g=rX,o=rX
 
 - name: Create Agent's config file
   ansible.builtin.template:
     src: "{{ grafana_agent_config_template }}"
     dest: "{{ config_location }}/agent-config.yaml"
-    mode: 0644
+    mode: u=rw,g=r,o=r
     force: true
 
 - name: Create Systemd service

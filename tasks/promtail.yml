@@ -10,7 +10,7 @@
     state: directory
     recurse: true
     path: "{{ promtail_location }}"
-    mode: 0755
+    mode: u=rwX,g=rX,o=rX
 
 - name: Unarchive Promtail
   ansible.builtin.unarchive:
@@ -23,7 +23,7 @@
   ansible.builtin.template:
     src: "{{ grafana_promtail_config_template }}"
     dest: "{{ promtail_location }}/promtail-config.yaml"
-    mode: 0644
+    mode: u=rw,g=r,o=r
     force: true
 
 - name: Create Systemd service
