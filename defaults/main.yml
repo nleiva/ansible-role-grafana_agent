@@ -14,6 +14,8 @@ promtail_location: /opt/promtail
 install_unzip: true
 systemd_service_folder: /etc/systemd/system
 grafana_location: us-central1
+grafana_location_prometheus: "{{ grafana_location }}"
+grafana_location_promtail: "{{ grafana_location }}"
 grafana_agent_config_template: agent-config.yaml.j2
 grafana_agent_systemd_template: grafana-agent.service.j2
 grafana_promtail_config_template: promtail-config.yaml.j2
