@@ -1,0 +1,6 @@
+---
+- name: Reload Grafana agent service
+  ansible.builtin.service:
+    name: grafana-agent
+    state: restarted
+    daemon_reload: true
