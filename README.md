@@ -2,13 +2,13 @@
 
 ![Ansible Lint](https://github.com/nleiva/ansible-role-grafana_agent/workflows/Ansible%20Lint/badge.svg?branch=main) ![Ansible Role](https://img.shields.io/ansible/role/52768?style=plastic) ![Quality Score](https://img.shields.io/ansible/quality/52768) ![Downloads](https://img.shields.io/ansible/role/d/52768?style=plastic)
 
-Installs [Grafana Cloud Agent](https://github.com/grafana/agent) on RedHat/CentOS or Debian/Ubuntu servers to collect observability data and sends it to [Grafana Cloud](https://grafana.com/products/cloud/).
+Installs [Grafana Cloud Agent](https://github.com/grafana/agent) on RedHat/CentOS or Debian/Ubuntu servers to collect observability data and sends it to [Grafana Cloud](https://grafana.com/products/cloud/). Available on [Galaxy](https://galaxy.ansible.com/nleiva/grafana_agent).
 
 This role installs and configures the latest version of [Grafana Cloud Agent](https://github.com/grafana/agent) from [GitHub releases](https://github.com/grafana/agent/releases). It also creates a [systemd service to manage the agent](https://grafana.com/docs/grafana-cloud/agent/agent_as_service/).
 
 It optionally installs [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/), which is an agent which ships the contents of local logs to [Grafana Cloud](https://grafana.com/products/cloud/) ([Loki](https://grafana.com/oss/loki/)).
 
-**WHY**? => [Monitoring your home lab devices in the cloud for free](https://nleiva.medium.com/monitoring-your-home-lab-devices-in-the-cloud-for-free-54c4d11ac471)
+**WHY**? => [Monitoring your home lab devices in the cloud for free](https://nleiva.medium.com/monitoring-your-home-lab-devices-in-the-cloud-for-free-54c4d11ac471). 
 
 ## Requirements
 
