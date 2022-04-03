@@ -1,7 +1,3 @@
-# exclude_paths included in this file are parsed relative to this file's location
-exclude_paths:
-  - .github/workflows
-
 # This makes linter to fully ignore rules/tags listed below
 skip_list:
   - unpredictability
