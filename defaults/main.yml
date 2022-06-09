@@ -4,19 +4,21 @@ grafana_agent_type:
   x86_64: amd64
   armv7l: armv7
   aarch64: arm64
-promtail_type:
-  x86_64: amd64
-  armv7l: arm
-  aarch64: arm64
+
 agent_location: /usr/local/bin
 config_location: /etc/grafana
-promtail_location: /opt/promtail
+
 install_unzip: true
+
 systemd_service_folder: /etc/systemd/system
+
+server_log_level: info
+server_log_format: logfmt # logfmt or json
+
 grafana_location: us-central1
 grafana_location_prometheus: "{{ grafana_location }}"
-grafana_location_promtail: "{{ grafana_location }}"
+grafana_location_loki: "{{ grafana_location }}"
+grafana_location_tempo: "{{ grafana_location }}"
+
 grafana_agent_config_template: agent-config.yaml.j2
 grafana_agent_systemd_template: grafana-agent.service.j2
-grafana_promtail_config_template: promtail-config.yaml.j2
-grafana_promtail_systemd_template: promtail.service.j2

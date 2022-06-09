@@ -1,15 +1,87 @@
+# https://grafana.com/docs/agent/latest/configuration/server-config/
 server:
   http_listen_port: 12345
-prometheus:
-  wal_directory: /tmp/grafana-agent-wal
+  log_level: {{ server_log_level }}
+  log_format: {{ server_log_format }}
+
+# https://grafana.com/docs/agent/latest/configuration/metrics-config/
+metrics:
+  wal_directory: /tmp/wal
   global:
-    scrape_interval: 15s
-  configs: null
+    scrape_interval: 1m
+    remote_write:
+      - url: https://prometheus-{{ grafana_location_prometheus }}.grafana.net/api/prom/push
+        basic_auth:
+          username: "{{ prometheus_user }}"
+          password: {{ grafana_api_key }}
+
+{% if loki_user is defined %}
+# https://grafana.com/docs/agent/latest/configuration/logs-config/
+logs:
+  configs:
+  - name: default
+    positions:
+      filename: /tmp/positions.yaml
+    scrape_configs:
+      - job_name: log-files
+        static_configs:
+        - targets:
+            - localhost
+          labels:
+            job: var-logs
+            hostname: {{ ansible_host }}
+            __path__: /var/log/*.log
+
+      - job_name: systemd-journal
+        journal:
+          max_age: 12h
+          labels:
+            job: systemd-journal
+        relabel_configs:
+        - source_labels:
+          - __journal__systemd_unit
+          target_label: systemd_unit
+        - source_labels:
+          - __journal__hostname
+          target_label: hostname
+        - source_labels:
+          - __journal_syslog_identifier
+          target_label: syslog_identifier
+        - source_labels:
+          - __journal__pid
+          target_label: pid
+        - source_labels:
+          - __journal__uid
+          target_label: uid
+        - source_labels:
+          - __journal__transport
+          target_label: transport
+    clients:
+      - url: https://{{ loki_user }}:{{ grafana_api_key }}@logs-prod-{{ grafana_location_loki }}.grafana.net/api/prom/push
+{% endif %}
+
+{% if tempo_user is defined %}
+# https://grafana.com/docs/agent/latest/configuration/traces-config/
+traces:
+  configs:
+  - name: default
+    receivers:
+      jaeger:
+        protocols:
+          grpc: # listens on the default jaeger grpc port: 14250
+          thrift_http:
+          thrift_compact:
+    remote_write:
+     - endpoint: tempo-{{ grafana_location_tempo }}.grafana.net:443
+       basic_auth:
+          username: "{{ tempo_user }}"
+          password: {{ grafana_api_key }}
+    batch:
+      timeout: 5s
+      send_batch_size: 100
+{% endif %}
+
+# https://grafana.com/docs/agent/latest/configuration/integrations/
 integrations:
   node_exporter:
     enabled: true
-  prometheus_remote_write:
-    - url: https://prometheus-{{ grafana_location_prometheus }}.grafana.net/api/prom/push
-      basic_auth:
-        username: "{{ prometheus_user }}"
-        password: {{ grafana_api_key }}

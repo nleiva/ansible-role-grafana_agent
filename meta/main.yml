@@ -17,3 +17,5 @@ galaxy_info:
   galaxy_tags:
     - grafana
     - prometheus
+    - loki
+    - tempo
