@@ -6,8 +6,6 @@ Installs [Grafana Cloud Agent](https://github.com/grafana/agent) on RedHat/CentO
 
 This role installs and configures the latest version of [Grafana Cloud Agent](https://github.com/grafana/agent) from [GitHub releases](https://github.com/grafana/agent/releases). It also creates a [systemd service to manage the agent](https://grafana.com/docs/grafana-cloud/agent/agent_as_service/).
 
-It optionally installs [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/), which is an agent which ships the contents of local logs to [Grafana Cloud](https://grafana.com/products/cloud/) ([Loki](https://grafana.com/oss/loki/)).
-
 **WHY**? => [Monitoring your home lab devices in the cloud for free](https://nleiva.medium.com/monitoring-your-home-lab-devices-in-the-cloud-for-free-54c4d11ac471). 
 
 ## Requirements
@@ -38,14 +36,19 @@ By default, this role will ensure [Grafana Cloud Agent](https://github.com/grafa
 
     loki_user: <username>
 
-Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Loki to get the value you need to provide for `loki_user`. If this value is present, this role will install the [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) agent and create a Systemd service for it. It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
+Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Loki to get the value you need to provide for `loki_user`. If this value is present, this role will configure the Agent for [logs](https://grafana.com/docs/agent/latest/configuration/logs-config/). It will scrape messages from `/var/log` and `journald`. For reference, see [Journal Scraping](https://grafana.com/docs/loki/latest/clients/promtail/scraping/#journal-scraping-linux-only).
+
+    tempo_user: <username>
+
+Each service in [Grafana Cloud](https://grafana.com/products/cloud/) has a unique service id or user. Once in the [Grafana Cloud Portal](https://grafana.com/docs/grafana-cloud/cloud-portal/) click on Tempo to get the value you need to provide for `tempo_user`.
 
     install_unzip: true
 
 Whether to install `unzip`, to extract files from agent's zip releases. By default is set to `true`.
 
     grafana_location_prometheus: us-central1
-    grafana_location_promtail: us-central1
+    grafana_location_loki: us-central1
+    grafana_location_tempo: us-central1
 
 The closest Grafana region for promtail or prometheus. As displayed in `@logs-prod-us-central1.grafana.net/api/prom/push` for example. By default is `us-central1`
 
@@ -56,14 +59,6 @@ To override the agent configuration template, you can define your own template. 
 The grafana agent systemd service template can be set using the following variable:
 
     grafana_agent_systemd_template: grafana-agent.service.j2
-
-To override the promtail configuration template, you can define your own template. By default it'll source it from the role file `templates/promtail-config.yaml.j2`. 
-
-    grafana_promtail_config_template: promtail-config.yaml.j2
-
-The promtail systemd service template can be set using the following variable:
-
-    grafana_promtail_systemd_template: promtail.service.j2
 
 ## Dependencies
 

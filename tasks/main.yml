@@ -47,8 +47,3 @@
         name: grafana-agent
         state: started
         enabled: true
-
-- name: Install Promtail
-  ansible.builtin.include_tasks: "promtail.yml"
-  when:
-    - loki_user is defined
