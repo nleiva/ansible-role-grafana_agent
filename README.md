@@ -67,7 +67,7 @@ The promtail systemd service template can be set using the following variable:
 
 ## Dependencies
 
-None.
+None. But, Grafana Agent's configuration file has had some breaking changes recently that might impact this role as we catch up with it (https://grafana.com/docs/agent/v0.26/upgrade-guide/#deprecation-on-yaml-fields-in-server-block-that-have-flags).
 
 ## Example Playbook
 
