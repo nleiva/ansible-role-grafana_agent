@@ -1,7 +1,7 @@
 ---
 - name: Download Agent file
   ansible.builtin.get_url:
-    url: "https://github.com/grafana/agent/releases/latest/download/agent-linux-{{ grafana_agent_type[ansible_architecture] }}.zip"
+    url: "https://github.com/grafana/agent/releases/latest/download/grafana-agent-linux-{{ grafana_agent_type[ansible_architecture] }}.zip"
     dest: "/tmp/agent-linux.zip"
     mode: "0644"
 
