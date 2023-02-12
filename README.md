@@ -12,7 +12,7 @@ It optionally installs [Promtail](https://grafana.com/docs/loki/latest/clients/p
 
 ## Requirements
 
-None. Other than an account on [Grafana Cloud](https://grafana.com/products/cloud/) -> [Create account](https://grafana.com/signup/cloud/connect-account).
+None. Other than an account on [Grafana Cloud](https://grafana.com/products/cloud/) -> [Create an account](https://grafana.com/signup/cloud/connect-account).
 
 ## Role Variables
 
