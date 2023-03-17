@@ -24,7 +24,7 @@ jobs:
       - name: Get image tags
         id: image_tags
         run: |
-          echo VERSION=$(jq -r '.version' ${{ context }}/version.json) >> $GITHUB_ENV
+          echo VERSION=$(jq -r '.version' ${ context }/version.json) >> $GITHUB_ENV
 
       - name: Docker meta
         id: meta
