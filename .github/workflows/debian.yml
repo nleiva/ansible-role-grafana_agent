@@ -24,9 +24,8 @@ jobs:
       - name: Get image tags
         id: image_tags
         run: |
-          echo -n ::set-output name=VERSION::
-          VERSION=$(jq -r '.version' ${context}/version.json)
-
+          echo VERSION=$(jq -r '.version' ${{ context }}/version.json) >> $GITHUB_ENV
+          
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
@@ -35,7 +34,7 @@ jobs:
             ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_NAMESPACE }}/${{ env.image_name }}-${{ env.image_type }}
           tags: |
             type=schedule
-            type=semver,pattern={{ steps.image_tags.outputs.VERSION }}
+            type=semver,pattern={{ env.VERSION }}
             type=sha
 
       - name: Login to Container Registry
