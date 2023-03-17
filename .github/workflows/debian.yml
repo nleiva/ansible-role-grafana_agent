@@ -1,0 +1,54 @@
+name: grafana-agent-role-debian
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+    paths:
+      - 'build/version.json'
+
+  # Allows you to run this workflow manually from the Actions tab    
+  workflow_dispatch:
+
+jobs:
+  build:
+    env:
+      context: build
+      image_type: debian
+      image_name: grafana-agent-role
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get image tags
+        id: image_tags
+        run: |
+          echo -n ::set-output name=VERSION::
+          VERSION=$(jq -r '.version' ${context}/version.json)
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_NAMESPACE }}/${{ env.image_name }}-${{ env.image_type }}
+          tags: |
+            type=schedule
+            type=semver,pattern={{ steps.image_tags.outputs.VERSION }}
+            type=sha
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.REGISTRY_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and publish image to Quay
+        uses: docker/build-push-action@v4
+        with:
+          path: ${{ env.context }}/ ${{ env.image_type }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
