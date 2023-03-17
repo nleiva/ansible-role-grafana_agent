@@ -20,7 +20,7 @@ RUN microdnf --nodocs --disableplugin=subscription-manager install \
     && rm -rf /tmp/*
 
 # Update curl -> RHSA-2023:1140
-RUN microdnf --nodocs --disableplugin=subscription-manager update curl \
+RUN microdnf --nodocs --disableplugin=subscription-manager update curl
 
 # Install Ansible inventory file
 RUN mkdir -p /etc/ansible
