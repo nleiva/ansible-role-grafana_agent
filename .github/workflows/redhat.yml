@@ -34,7 +34,7 @@ jobs:
             ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_NAMESPACE }}/${{ env.image_name }}-${{ env.image_type }}
           tags: |
             type=schedule
-            type=semver,pattern={{ env.VERSION }}
+            type=semver,pattern=${{ env.VERSION }}
             type=sha
 
       - name: Login to Container Registry
@@ -47,7 +47,7 @@ jobs:
       - name: Build and publish image to Quay
         uses: docker/build-push-action@v4
         with:
-          path: ${{ env.context }}/ ${{ env.image_type }}
+          path: ${{ env.context }}/ ${{ env.image_type }}/.
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
