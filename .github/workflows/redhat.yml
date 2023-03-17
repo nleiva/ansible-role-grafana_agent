@@ -41,6 +41,6 @@ jobs:
       - name: Build and publish image to registry
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:${{ env.context }}/ ${{ env.image_type }}"
+          context: "{{defaultContext}}:${{ env.context }}/${{ env.image_type }}"
           push: true
           tags: ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_NAMESPACE }}/${{ env.image_name }}-${{ env.image_type }}:${{ env.VERSION }}
