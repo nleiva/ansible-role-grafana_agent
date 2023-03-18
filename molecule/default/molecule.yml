@@ -6,8 +6,8 @@ driver:
   name: podman
 
 platforms:
-  - name: debian11
-    image: docker.io/geerlingguy/docker-debian11-ansible:latest
+  - name: debian
+    image: quay.io/nleiva/grafana-agent-role-debian
     pre_build_image: true
     command: /lib/systemd/systemd
     privileged: true
