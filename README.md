@@ -77,6 +77,12 @@ None. But, Grafana Agent's configuration file has had some breaking changes rece
 
 See an example playbook I run for my home-lab [here](https://github.com/nleiva/ansible-home/blob/main/grafana-cloud.yml).
 
+## Testing
+
+The role is tested using [Molecule](https://molecule.readthedocs.io/en/latest/). Dependencies for testing are `podman` and its plugin for Molecule.
+
+Run `molecule test` in the repository root to test the role.
+
 ## License
 
 GPL-3.0 License

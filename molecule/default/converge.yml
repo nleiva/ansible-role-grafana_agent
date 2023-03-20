@@ -1,0 +1,22 @@
+---
+- name: Converge
+  hosts: all
+
+  vars:
+    # Bogus values to avoid failure in
+    # Grafana agent template rendering
+    prometheus_user: alice
+    grafana_api_key: bob
+
+  pre_tasks:
+    # Update the APT cache to prevent
+    # failue when installing unzip
+    - name: Update APT cache
+      when: ansible_os_family == "Debian"
+      ansible.builtin.apt:
+        update_cache: true
+
+  tasks:
+    - name: "Include ansible-role-grafana_agent"
+      ansible.builtin.include_role:
+        name: "ansible-role-grafana_agent"

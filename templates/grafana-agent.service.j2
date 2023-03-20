@@ -3,7 +3,7 @@ Description=Grafana Cloud agent
 
 [Service]
 Type=simple
-ExecStart={{ agent_location }}/agent-linux-{{ grafana_agent_type[ansible_architecture] }} --config.file={{ config_location }}/agent-config.yaml
+ExecStart={{ agent_location }}/grafana-agent-linux-{{ grafana_agent_type[ansible_architecture] }} --config.file={{ config_location }}/agent-config.yaml
 Restart=always
 
 [Install]
