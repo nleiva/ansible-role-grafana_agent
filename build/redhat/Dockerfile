@@ -12,7 +12,7 @@ RUN mkdir -p $ANSIBLE_DIR
 
 # Install dependencies
 RUN microdnf --nodocs --disableplugin=subscription-manager install \
-    python39 python39-devel python39-setuptools python39-wheel python39-pip \
+    python39 python39-devel python3-dnf python39-setuptools python39-wheel python39-pip \
     systemd iproute wget gcc-toolset-12-gcc \
     && alternatives --set python /usr/bin/python3 \
     && pip3.9 install --upgrade pip $PIP_PACKAGES \
