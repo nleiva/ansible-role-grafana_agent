@@ -83,6 +83,8 @@ The role is tested using [Molecule](https://molecule.readthedocs.io/en/latest/).
 
 Run `molecule test` in the repository root to test the role.
 
+The default OS for tests is Debian. This can be changed using the `ROLE_TEST_OS` environment variable. The available options can be found [here](./.github/workflows/molecule.yml#L32).
+
 ## License
 
 GPL-3.0 License

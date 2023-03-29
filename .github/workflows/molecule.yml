@@ -1,0 +1,52 @@
+---
+
+name: Molecule test
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+      - 'build/**'
+      - LICENSE
+      - Makefile
+      - README.md
+  pull_request:
+    paths-ignore:
+      - '.github/**'
+      - 'build/**'
+      - LICENSE
+      - Makefile
+      - README.md
+  workflow_dispatch:
+
+jobs:
+  molecule:
+    runs-on: ubuntu-latest
+    env:
+      PY_COLORS: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        ROLE_TEST_OS: [debian, redhat]
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Setup Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+
+      - name: Install Molecule and Podman driver
+        run: python3 -m pip install molecule "molecule-plugins[podman]"
+
+      - name: Run tests
+        env:
+          ROLE_TEST_OS: ${{ matrix.ROLE_TEST_OS }}
+        run: molecule test
